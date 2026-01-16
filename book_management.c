@@ -92,7 +92,7 @@ void saveBook(Book book) {
     fwrite(&book, sizeof(Book), 1, file);
     fclose(file);
     
-    // Update the array
+    
     books[bookCount] = book;
     bookCount++;
 }
