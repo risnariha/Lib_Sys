@@ -82,12 +82,11 @@ void issueBook() {
     fgets(newIssue.borrowerId, 20, stdin);
     newIssue.borrowerId[strcspn(newIssue.borrowerId, "\n")] = 0;
     
-    // Set issue date to current date
     getCurrentDate(newIssue.issueDate);
     
-    // Set return date to 14 days from now
+   
     time_t t = time(NULL);
-    t += 14 * 24 * 60 * 60; // 14 days in seconds
+    t += 14 * 24 * 60 * 60; 
     struct tm *tm = localtime(&t);
     sprintf(newIssue.returnDate, "%04d-%02d-%02d", tm->tm_year + 1900, tm->tm_mon + 1, tm->tm_mday);
     
@@ -95,13 +94,13 @@ void issueBook() {
     newIssue.isReturned = 0;
     newIssue.fine = 0.0;
     
-    // Reduce available count
+    
     books[index].available--;
     
-    // Save issued book record
+    
     saveIssuedBook(newIssue);
     
-    // Update books file
+    
     FILE *file = fopen(FILENAME_BOOKS, "wb");
     if (file != NULL) {
         fwrite(books, sizeof(Book), bookCount, file);
@@ -115,7 +114,7 @@ void issueBook() {
     printf("Issue Date: %s\n", newIssue.issueDate);
     printf("Due Date: %s\n", newIssue.returnDate);
     
-    // Add to history
+    
     char details[200];
     sprintf(details, "Issued book ID %d to %s (Issue ID: %d)", bookId, newIssue.borrowerName, newIssue.issueId);
     addToHistory("ISSUE_BOOK", details);
@@ -123,7 +122,7 @@ void issueBook() {
 
 void returnBook() {
     int issueId, issueIndex = -1, bookIndex;
-    float finePerDay = 1.0; // $1 per day fine
+    float finePerDay = 1.0; 
     char currentDate[20];
     struct tm dueDate, currentTm;
     time_t dueTime, currentTime;
@@ -135,7 +134,7 @@ void returnBook() {
     scanf("%d", &issueId);
     while(getchar() != '\n');
     
-    // Find the issued book
+    
     for (int i = 0; i < issuedCount; i++) {
         if (issuedBooks[i].issueId == issueId && !issuedBooks[i].isReturned) {
             issueIndex = i;
@@ -148,11 +147,11 @@ void returnBook() {
         return;
     }
     
-    // Get current date
+    
     getCurrentDate(currentDate);
     strcpy(issuedBooks[issueIndex].actualReturnDate, currentDate);
     
-    // Calculate fine if overdue
+    
     sscanf(issuedBooks[issueIndex].returnDate, "%d-%d-%d", 
            &dueDate.tm_year, &dueDate.tm_mon, &dueDate.tm_mday);
     dueDate.tm_year -= 1900;
@@ -181,23 +180,23 @@ void returnBook() {
         printf("Book is %d days overdue. Fine: $%.2f\n", daysOverdue, fine);
     }
     
-    // Mark as returned
+
     issuedBooks[issueIndex].isReturned = 1;
     
-    // Update book availability
+    
     bookIndex = findBookById(issuedBooks[issueIndex].bookId);
     if (bookIndex != -1) {
         books[bookIndex].available++;
     }
     
-    // Save updated issued books
+    
     FILE *file = fopen(FILENAME_ISSUED, "wb");
     if (file != NULL) {
         fwrite(issuedBooks, sizeof(IssuedBook), issuedCount, file);
         fclose(file);
     }
     
-    // Update books file
+    
     file = fopen(FILENAME_BOOKS, "wb");
     if (file != NULL) {
         fwrite(books, sizeof(Book), bookCount, file);
@@ -212,7 +211,7 @@ void returnBook() {
         printf("Fine Paid: $%.2f\n", fine);
     }
     
-    // Add to history
+    
     char details[200];
     sprintf(details, "Returned book (Issue ID: %d), Fine: $%.2f", issueId, fine);
     addToHistory("RETURN_BOOK", details);
@@ -262,8 +261,7 @@ void displayOverdueBooks() {
     
     for (int i = 0; i < issuedCount; i++) {
         if (!issuedBooks[i].isReturned) {
-            // Simple date comparison (for demo purposes)
-            // In a real system, you'd parse dates properly
+            
             if (strcmp(issuedBooks[i].returnDate, currentDate) < 0) {
                 printf("%-8d %-30s %-20s %-12s %-12s %-10s\n",
                        issuedBooks[i].issueId,
@@ -271,7 +269,7 @@ void displayOverdueBooks() {
                        issuedBooks[i].borrowerName,
                        issuedBooks[i].issueDate,
                        issuedBooks[i].returnDate,
-                       "7"); // Placeholder for days overdue
+                       "7"); 
                 overdueCount++;
             }
         }
