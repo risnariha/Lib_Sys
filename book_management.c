@@ -107,7 +107,7 @@ void saveIssuedBook(IssuedBook issuedBook) {
     fwrite(&issuedBook, sizeof(IssuedBook), 1, file);
     fclose(file);
     
-    // Update the array
+    
     issuedBooks[issuedCount] = issuedBook;
     issuedCount++;
 }
@@ -167,7 +167,7 @@ void addBook() {
     
     newBook.available = newBook.quantity;
     
-    // Clear input buffer
+    
     while(getchar() != '\n');
     
     printf("\nBook Details:\n");
