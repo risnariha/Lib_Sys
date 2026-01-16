@@ -1,17 +1,17 @@
+
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
 #include <ctype.h>
 #include "library.h"
 
-// Function prototypes
 void displayMenu();
 void handleMenuChoice(int choice);
 
 int main() {
     int choice;
     
-    // Initialize files if they don't exist
+    
     initializeFiles();
     
     printf("\n=============================================\n");

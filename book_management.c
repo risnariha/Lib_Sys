@@ -522,7 +522,7 @@ void deleteBook() {
     
     printf("\nBook deleted successfully!\n");
     
-    // Add to history
+    
     char details[200];
     sprintf(details, "Deleted book ID: %d", bookId);
     addToHistory("DELETE_BOOK", details);
