@@ -187,7 +187,7 @@ void addBook() {
         saveBook(newBook);
         printf("\nBook added successfully with ID: %d\n", newBook.id);
         
-        // Add to history
+        
         char details[200];
         sprintf(details, "Added book: %s (ID: %d)", newBook.title, newBook.id);
         addToHistory("ADD_BOOK", details);
@@ -338,7 +338,7 @@ void searchByISBN() {
                    books[i].year,
                    books[i].available);
             found = 1;
-            break; // ISBN should be unique
+            break; 
         }
     }
     
@@ -451,7 +451,7 @@ void updateBook() {
             return;
     }
     
-    // Save updated book list to file
+    
     FILE *file = fopen(FILENAME_BOOKS, "wb");
     if (file == NULL) {
         printf("Error saving updated book information!\n");
