@@ -463,8 +463,7 @@ void updateBook() {
     fclose(file);
     
     printf("\nBook information updated successfully!\n");
-    
-    // Add to history
+ 
     char details[200];
     sprintf(details, "Updated book ID: %d", bookId);
     addToHistory("UPDATE_BOOK", details);
