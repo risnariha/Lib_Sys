@@ -507,7 +507,7 @@ void deleteBook() {
         }
     }
     
-    // Remove book from array
+    
     for (int i = index; i < bookCount - 1; i++) {
         books[i] = books[i + 1];
     }
