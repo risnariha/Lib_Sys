@@ -499,7 +499,7 @@ void deleteBook() {
         return;
     }
     
-    // Check if book is currently issued
+    
     for (int i = 0; i < issuedCount; i++) {
         if (issuedBooks[i].bookId == bookId && !issuedBooks[i].isReturned) {
             printf("Cannot delete book! It is currently issued to %s\n", issuedBooks[i].borrowerName);
