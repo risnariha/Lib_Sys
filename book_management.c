@@ -23,7 +23,7 @@ void initializeFiles() {
         fclose(file);
     }
     
-    
+
     file = fopen(FILENAME_ISSUED, "rb");
     if (file == NULL) {
         file = fopen(FILENAME_ISSUED, "wb");
@@ -34,7 +34,7 @@ void initializeFiles() {
         fclose(file);
     }
     
-    // Create history file if it doesn't exist
+    
     file = fopen(FILENAME_HISTORY, "rb");
     if (file == NULL) {
         file = fopen(FILENAME_HISTORY, "wb");
@@ -45,7 +45,7 @@ void initializeFiles() {
         fclose(file);
     }
     
-    // Load existing data
+    
     loadBooks();
     loadIssuedBooks();
 }
