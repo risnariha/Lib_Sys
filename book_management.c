@@ -4,7 +4,6 @@
 #include <ctype.h>
 #include "library.h"
 
-// Global variables
 Book books[MAX_BOOKS];
 IssuedBook issuedBooks[MAX_BOOKS];
 int bookCount = 0;
@@ -13,7 +12,7 @@ int issuedCount = 0;
 void initializeFiles() {
     FILE *file;
     
-    // Create books file if it doesn't exist
+    
     file = fopen(FILENAME_BOOKS, "rb");
     if (file == NULL) {
         file = fopen(FILENAME_BOOKS, "wb");
