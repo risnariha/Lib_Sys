@@ -23,7 +23,7 @@ void initializeFiles() {
         fclose(file);
     }
     
-    // Create issued books file if it doesn't exist
+    
     file = fopen(FILENAME_ISSUED, "rb");
     if (file == NULL) {
         file = fopen(FILENAME_ISSUED, "wb");
