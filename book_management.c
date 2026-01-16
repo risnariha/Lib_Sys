@@ -513,7 +513,6 @@ void deleteBook() {
     }
     bookCount--;
     
-    // Save updated book list to file
     FILE *file = fopen(FILENAME_BOOKS, "wb");
     if (file == NULL) {
         printf("Error saving updated book list!\n");
